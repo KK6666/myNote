@@ -59,6 +59,7 @@ receiveData(args){
       .catch(err => {
         console.log(err.response)
       });
+      
 //发送的请求数不确定时，使用map结合Axios.all，arr是会灵活变化的数组，根据map方法返回多个promise。
  Axios.all(arr.map(function (data)=>{
   	return this.axios.post(....)
