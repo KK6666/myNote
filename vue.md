@@ -47,7 +47,28 @@ receiveData(args){
    this.$store.commit('module1/changeState',data)
 ```
 
-# axios 并发
+# axios同时发送多个或不定量的请求，并等待所有请求完毕后操作
 ```
-
+//同时发送多个请求，Axios.spread中的函数，请求全部完成后会调用，并且请求数据会一一对应参数。
+ Axios.all([request1, request2, request3])
+      .then(
+        Axios.spread((res1, res2, res3) => {
+          console.log('全部加载完成')
+        })
+      )
+      .catch(err => {
+        console.log(err.response)
+      });
+//发送的请求数不确定时，使用map结合Axios.all，arr是会灵活变化的数组，根据map方法返回多个promise。
+ Axios.all(arr.map(function (data)=>{
+  	return this.axios.post(....)
+  }))
+      .then(
+        Axios.spread((...a) => {
+          console.log('全部加载完成')
+        })
+      )
+      .catch(err => {
+        console.log(err.response)
+      });
 ```
