@@ -60,13 +60,17 @@ receiveData(args){
         console.log(err.response)
       });
       
-//发送的请求数不确定时，使用map结合Axios.all，arr是会灵活变化的数组，根据map方法返回多个promise。
+//发送的请求数不确定时，使用map结合Axios.all，arr是会灵活变化的数组，arr的子项个数决定请求的个数,根据map方法返回多个promise。
+//
  Axios.all(arr.map(function (data)=>{
   	return this.axios.post(....)
   }))
       .then(
-        Axios.spread((...a) => {
+        Axios.spread((...resArr) => {
           console.log('全部加载完成')
+          console.log(resArr[0])
+          console.log(resArr[1])
+          ...
         })
       )
       .catch(err => {
