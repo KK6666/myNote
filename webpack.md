@@ -17,8 +17,8 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit:10240
-              // name: '[name]_[hash].[ext]',
+              limit:10240 //打包文件小于10240K，则直接打包进bundle.js;大于则单独打包成一个文件
+              name: '[name]_[hash].[ext]',
             },
           },
         ],
