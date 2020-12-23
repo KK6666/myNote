@@ -57,7 +57,7 @@ module.exports = {
       }
     ]
 ```
-## 1.库项目代码，只需配置plugins：transform-runtime（以闭包形式注入，不存在全局污染的问题）
+## 2.库项目代码，只需配置plugins：transform-runtime（以闭包形式注入，不存在全局污染的问题）
 ```
      {
         test: /\.m?js$/,
