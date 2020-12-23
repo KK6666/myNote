@@ -27,3 +27,57 @@ module.exports = {
   },
 }
 ```
+
+# babel
+## 1.业务代码，只需配置presets，在需要使用babel的文件使用 import "@babel/polyfill"（会污染全局环境）
+```
+    rules: [
+        {
+        test: /\.m?js$/,
+        exclude: /node_modules/,  //不应用的文件夹
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage', //按需引入babel规则，减小index.js编译后的文件大小
+                  targets: {
+                    edge: "17",
+                    firefox: "60",
+                    chrome: "67",
+                    safari: "11.1",
+                  },
+                }  //根据浏览器版本决定是否引用
+              ]
+            ]
+          }
+        }
+      }
+    ]
+```
+## 1.库项目代码，只需配置plugins：transform-runtime（以闭包形式注入，不存在全局污染的问题）
+```
+     {
+        test: /\.m?js$/,
+        exclude: /node_modules/,  //不应用的文件夹
+        use: {
+          loader: "babel-loader",
+          options: {
+            "plugins": [
+              [
+                "@babel/plugin-transform-runtime",
+                {
+                  "corejs": 2,
+                  "helpers": true,
+                  "regenerator": true,
+                  "useESModules": false,
+                }
+              ]
+            ]
+
+          }
+        }
+      }
+```
