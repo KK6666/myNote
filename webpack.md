@@ -29,7 +29,7 @@ module.exports = {
 ```
 
 # babel
-## 1.业务代码，只需配置presets，在需要使用babel的文件使用 import "@babel/polyfill"（会污染全局环境）
+### 1.业务代码，只需配置presets，在需要使用babel的文件使用 import "@babel/polyfill"（会污染全局环境）
 ```
     rules: [
         {
@@ -57,7 +57,7 @@ module.exports = {
       }
     ]
 ```
-## 2.库项目代码，只需配置plugins：transform-runtime（以闭包形式注入，不存在全局污染的问题）
+### 2.库项目代码，只需配置plugins：transform-runtime（以闭包形式注入，不存在全局污染的问题）
 ```
      {
         test: /\.m?js$/,
@@ -81,3 +81,6 @@ module.exports = {
         }
       }
 ```
+
+# Tree Shaking
+### 仅支持静态引入，如ESModule(import)，不支持动态引用，如commonJS（require）
