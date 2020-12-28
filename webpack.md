@@ -83,4 +83,4 @@ module.exports = {
 ```
 
 # Tree Shaking
-### 仅支持静态引入，如ESModule(import)，不支持动态引用，如commonJS（require）
+仅支持静态引入，如ESModule(import)，不支持动态引用，如commonJS（require）
