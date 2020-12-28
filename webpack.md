@@ -84,3 +84,23 @@ module.exports = {
 
 # Tree Shaking
 仅支持静态引入，如ESModule(import)，不支持动态引用，如commonJS（require）
+### 用法
+webpack.config.js
+```
+  {
+    mode: 'development',
+    // mode为production，不必配置optimization
+    optimization: {
+      usedExports: true,
+    },
+  }
+```
+package.json
+```
+  {
+    "sideEffects": "false"
+  }
+```
+
+
+
