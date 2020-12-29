@@ -90,10 +90,10 @@ webpack.config.js
 ```
   {
     mode: 'development',
-    
+
     // mode为development
     devtool: 'cheap-module-source-map',
-    /*
+
     // mode为production
     // devtool: 'cheap-module-eval-source-map',
 
