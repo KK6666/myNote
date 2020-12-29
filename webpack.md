@@ -83,12 +83,20 @@ module.exports = {
 ```
 
 # Tree Shaking
+功能：实现模块文件只引用需要的代码（例如引用的js文件包含多个方法，则只会引用用到的方法）
 仅支持静态引入，如ESModule(import)，不支持动态引用，如commonJS（require）
 ### 用法
 webpack.config.js
 ```
   {
     mode: 'development',
+    
+    // mode为development
+    devtool: 'cheap-module-source-map',
+    /*
+    // mode为production
+    // devtool: 'cheap-module-eval-source-map',
+
     // mode为production，不必配置optimization
     optimization: {
       usedExports: true,
@@ -98,6 +106,7 @@ webpack.config.js
 package.json
 ```
   {
+    //过滤掉不需要引用的文件，如果全部引用则设置为false
     "sideEffects": "false"
   }
 ```
