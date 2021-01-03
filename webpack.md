@@ -111,5 +111,30 @@ package.json
   }
 ```
 
+# webpack不同环境，相同配置提取
+  1.创建webpack.common.js,提取不同环境的相同配置代码
+  2.各环境配置文件引用webpack.common.js，使用使用webpack-merge，合并相同配置代码
+    webpack-merge：https://www.npmjs.com/package/webpack-merge
+### 用法
+webpack.dev.js
+```
+const path = require('path')
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common.js')
+
+const devConfig = {
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+    open: true,
+    // hotOnly: true  //hotOnly: true页面将不自动刷新
+  },
+}
+
+module.exports = merge(devConfig, commonConfig)
+```
 
 
